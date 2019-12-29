@@ -11,4 +11,4 @@ Run the tests with `gradle test`
 General clean ups, TODOs and things I wish to implement for this project:
 
 * Configure a project to use JUnit via the standalone console
-* IN PROGRESS Set up GitHub actions 
+* IN PROGRESS 2 Set up GitHub actions 
