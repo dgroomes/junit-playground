@@ -11,4 +11,5 @@ Run the tests with `gradle test`
 General clean ups, TODOs and things I wish to implement for this project:
 
 * Configure a project to use JUnit via the standalone console
-* Set up GitHub actions
+* Optimize the CI build (Github Actions). The set up Java step is slow (20s), why even do it? Maybe make a base Docker 
+  image tailor-made for Gradle/Java projects. 
