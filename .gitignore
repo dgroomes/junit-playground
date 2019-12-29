@@ -5,4 +5,4 @@
 build
 
 .idea/
-*.jar
+junit-platform-console-standalone-*.jar
