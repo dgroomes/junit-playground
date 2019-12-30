@@ -2,9 +2,9 @@
 # Run the tests using the standalone JUnit console
 
 # Build the soure code (including tests), install dependencies, and print path to the standalone JUnit Console Launcher
-./gradlew compileTestJava installDist printJunitConsoleLauncherPath
+./gradlew compileTestJava installDist printJunitLauncherPath
 
-LAUNCHER_PATH_FILE=build/junit-standalone-jar-path.txt
+LAUNCHER_PATH_FILE=build/junit-launcher.path
 if [[ -f "$LAUNCHER_PATH_FILE" ]]; then
   LAUNCHER_PATH=$(cat "$LAUNCHER_PATH_FILE")
 else

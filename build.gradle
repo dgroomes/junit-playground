@@ -23,10 +23,10 @@ configurations {
  * tests. It's great to leverage Gradle for managing dependencies and setting up environment information for a
  * downstream process like "test.sh"
  */
-task printjunitLauncherPath() {
+task printJunitLauncherPath() {
     doLast {
         configurations.junitLauncher.resolve().each {
-            new File(buildDir, "junit-standalone-jar-path.txt").text = "$it"
+            new File(buildDir, "junit-launcher.path").text = "$it"
         }
     }
 }
