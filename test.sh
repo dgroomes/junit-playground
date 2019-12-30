@@ -16,8 +16,8 @@ assertFileExists() {
   fi
 }
 
-assertFileExists LAUNCHER_PATH_FILE
-assertFileExists TEST_CLASSPATH_FILE
+assertFileExists $LAUNCHER_PATH_FILE
+assertFileExists $TEST_CLASSPATH_FILE
 
 LAUNCHER_PATH=$(cat "$LAUNCHER_PATH_FILE")
 
