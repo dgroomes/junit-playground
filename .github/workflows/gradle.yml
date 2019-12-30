@@ -26,4 +26,6 @@ jobs:
       with:
         java-version: 13
     - name: Build and test
+      run: ./gradlew build
+    - name: Test using standalone JUnit Console Launcher
       run: ./test.sh
