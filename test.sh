@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
-# Run the tests using the standalone JUnit console
+# Run the tests using the standalone JUnit console.
+# Requires that the project is already built and targeting Java 14.
 
-# Build the soure code (including tests), install dependencies, print path to the standalone JUnit Console Launcher,
-# and print the test class path to a file.
-./gradlew compileTestJava installDist printJunitLauncherPath printTestClassPath
+set -eu
+
+./gradlew -PTARGET_JAVA_14 printJunitLauncherPath printTestClassPath
 
 LAUNCHER_PATH_FILE=build/junit-launcher-path.txt
 TEST_CLASSPATH_FILE=build/test-classpath.txt
+JAVA_14_BIN="$JAVA_14_HOME/bin/java"
 
 assertFileExists() {
   local file=$1
@@ -16,12 +18,13 @@ assertFileExists() {
   fi
 }
 
-assertFileExists $LAUNCHER_PATH_FILE
-assertFileExists $TEST_CLASSPATH_FILE
+assertFileExists "$LAUNCHER_PATH_FILE"
+assertFileExists "$TEST_CLASSPATH_FILE"
+assertFileExists "$JAVA_14_BIN"
 
 LAUNCHER_PATH=$(cat "$LAUNCHER_PATH_FILE")
 
-java -jar "$LAUNCHER_PATH" \
+"$JAVA_14_BIN" -jar "$LAUNCHER_PATH" \
   --include-engine junit-jupiter \
   --fail-if-no-tests \
   --scan-classpath \
