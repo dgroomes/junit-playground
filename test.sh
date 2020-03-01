@@ -4,6 +4,11 @@
 
 set -eu
 
+if [[ ! -d "build" ]]; then
+  echo >&2 "Build the project first"
+  exit 1
+fi
+
 ./gradlew -PTARGET_JAVA_14 printJunitLauncherPath printTestClassPath
 
 LAUNCHER_PATH_FILE=build/junit-launcher-path.txt
