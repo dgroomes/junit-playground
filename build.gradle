@@ -38,8 +38,8 @@ if (project.hasProperty("TARGET_JAVA_14")) {
     }
 
     def java14HomeFile = new File(java14Home)
-    if (!java14HomeFile.exists()) {
-        throw new IllegalArgumentException("JAVA_14_HOME environment variable must be set to the path of JDK14 but was not a real file: $java14Home")
+    if (!java14HomeFile.isDirectory()) {
+        throw new IllegalArgumentException("JAVA_14_HOME environment variable must be set to the path of JDK14 but was not a real directory: $java14Home")
     }
 
     /**
@@ -50,11 +50,9 @@ if (project.hasProperty("TARGET_JAVA_14")) {
         options.fork = true
         options.forkOptions.javaHome = java14HomeFile
     }
-} else {
-    project.getLogger().quiet("Configuring to compile with Java 13")
-    java {
-        sourceCompatibility = JavaVersion.VERSION_13
-        targetCompatibility = JavaVersion.VERSION_13
+
+    tasks.run {
+        setExecutable("$java14Home/bin/java")
     }
 }
 
