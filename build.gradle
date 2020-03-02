@@ -19,7 +19,7 @@ configurations {
 }
 
 if (project.hasProperty("TARGET_JAVA_14")) {
-    project.getLogger().quiet("Compiling with Java 14")
+    project.getLogger().quiet("Configuring to compile with Java 14")
     java {
         /**
          * This is how to configure the Java compilation task to use Java 14.
@@ -51,7 +51,7 @@ if (project.hasProperty("TARGET_JAVA_14")) {
         options.forkOptions.javaHome = java14HomeFile
     }
 } else {
-    project.getLogger().quiet("Compiling with Java 13")
+    project.getLogger().quiet("Configuring to compile with Java 13")
     java {
         sourceCompatibility = JavaVersion.VERSION_13
         targetCompatibility = JavaVersion.VERSION_13
