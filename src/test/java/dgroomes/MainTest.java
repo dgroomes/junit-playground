@@ -6,6 +6,6 @@ class MainTest {
 
     @Test
     void mainTest() {
-        Main.main(new String[]{"hello", "world", "!"});
+        Main.main(new String[]{"hello", "world", "from", "a", "JUnit", "test", "method", "!"});
     }
 }

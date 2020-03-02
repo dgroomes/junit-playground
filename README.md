@@ -4,7 +4,7 @@ Learning and exploring JUnit <https://junit.org/junit5/>.
 
 ## Instructions
 
-1. Run the program with `./gradlew run`
+1. Run the program with `./gradlew run --args "Hello World"`
 1. Run the tests with `./gradlew test`
 
 ### Standalone JUnit Console Launcher
@@ -27,7 +27,7 @@ work around this limitation.
 The [instructions](#instructions) to compile and run with Java 14 have now changed:
 
 1. Set the environment variable `JAVA_14_HOME` to the path of a JDK 14 installation on your computer
-1. Run the program with `./gradlew -PTARGET_JAVA_14 run`
+1. Run the program with `./gradlew -PTARGET_JAVA_14 run --args "Hello World"`
 1. Try to run the tests with `./gradlew -PTARGET_JAVA_14 test`. This step will wail fail because it will try to use the
    version of Java that is executing Gradle (as of 2020-03-1 it must be some version between 8 and 13) to execute code
    compiled for Java 14. Specifically, it will throw an error with this message:
