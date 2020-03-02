@@ -22,7 +22,7 @@ The [instructions](#instructions) to compile and run with Java 14 differ in this
 
 1. Set the environment variable `JAVA_14_HOME` to the path of a JDK 14 installation on your computer
 1. Run the program with `./gradlew -PTARGET_JAVA_14 run --args "Hello World"`
-1. Run the test with `./gradlew -PTARGET_JAVA_14 test`
+1. Run the tests with `./gradlew -PTARGET_JAVA_14 test`
 
 ### Standalone JUnit Console Launcher Example
 
