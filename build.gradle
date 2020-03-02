@@ -54,6 +54,10 @@ if (project.hasProperty("TARGET_JAVA_14")) {
     tasks.run {
         setExecutable("$java14Home/bin/java")
     }
+
+    tasks.test {
+        setExecutable("$java14Home/bin/java")
+    }
 }
 
 /**
