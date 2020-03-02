@@ -19,7 +19,7 @@ configurations {
 }
 
 if (project.hasProperty("TARGET_JAVA_14")) {
-    project.getLogger().quiet("Configuring to compile with Java 14")
+    project.getLogger().quiet("Configuring to compile with Java 14 and execute with Java 14")
     java {
         /**
          * This is how to configure the Java compilation task to use Java 14.
@@ -43,20 +43,23 @@ if (project.hasProperty("TARGET_JAVA_14")) {
     }
 
     /**
-     * Configure the compiler step to accommodate Java 14 by forking a javac process using JDK 14 instead of the Java that
-     * is running the Gradle process (Gradle does not support 14)
+     * Configure the compiler step to accommodate Java 14 by forking a javac process using JDK 14 instead of the Java
+     * that is running the Gradle process (Gradle does not support 14)
      */
     tasks.withType(JavaCompile) {
         options.fork = true
         options.forkOptions.javaHome = java14HomeFile
+        options.compilerArgs += ["--enable-preview"]
     }
 
     tasks.run {
         setExecutable("$java14Home/bin/java")
+        jvmArgs = ["--enable-preview"]
     }
 
     tasks.test {
         setExecutable("$java14Home/bin/java")
+        jvmArgs = ["--enable-preview"]
     }
 }
 
