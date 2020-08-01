@@ -11,7 +11,7 @@ Learning and exploring JUnit <https://junit.org/junit5/>.
 1. Run the program with `./gradlew run --args "Hello World"`
 1. Run the tests with `./gradlew test`
 
-### Java 14 Example 
+### Java 14 Example
 
 Gradle itself cannot run on Java 14 (as of 2020-03-01 the latest version of Gradle is 6.2.1). Fortunately, Gradle does 
 support compiling Java 14 code because it can fork a process using a different JDK to execute the compile task. 
