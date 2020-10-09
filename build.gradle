@@ -18,47 +18,43 @@ configurations {
     junitLauncher
 }
 
-if (project.hasProperty("TARGET_JAVA_14")) {
-    project.getLogger().quiet("Configuring to compile with Java 14 and execute with Java 14")
+if (project.hasProperty("TARGET_JAVA_16")) {
+    project.getLogger().quiet("Configuring to compile with Java 16 and execute with Java 16")
     java {
         /**
-         * This is how to configure the Java compilation task to use Java 14.
-         * In this case, we are using Gradle 6, which supports up to Java 13. So, JavaVersion.VERSION_HIGHER resolves to the
-         * "next version of Java after 13" which is 14. See https://github.com/gradle/gradle/blob/2af1a363f3d3b8d69f5bb1f07dde828b635edfe6/subprojects/base-services/src/main/java/org/gradle/api/JavaVersion.java#L58
-         * There is no way to configure Java 15 or beyond until Gradle supports Java 14. And so on for future versions of
-         * Java.
+         * This is how to configure the Java compilation task to use Java 16.
          */
-        sourceCompatibility = JavaVersion.VERSION_HIGHER
-        targetCompatibility = JavaVersion.VERSION_HIGHER
+        sourceCompatibility = JavaVersion.VERSION_16
+        targetCompatibility = JavaVersion.VERSION_16
     }
 
-    def java14Home = System.getenv("JAVA_14_HOME")
-    if (java14Home == null || java14Home.isBlank()) {
-        throw new IllegalArgumentException("JAVA_14_HOME environment variable must be set to the path of JDK14 but was not set")
+    def java16Home = System.getenv("JAVA_16_HOME")
+    if (java16Home == null || java16Home.isBlank()) {
+        throw new IllegalArgumentException("JAVA_16_HOME environment variable must be set to the path of JDK16 but was not set")
     }
 
-    def java14HomeFile = new File(java14Home)
-    if (!java14HomeFile.isDirectory()) {
-        throw new IllegalArgumentException("JAVA_14_HOME environment variable must be set to the path of JDK14 but was not a real directory: $java14Home")
+    def java16HomeFile = new File(java16Home)
+    if (!java16HomeFile.isDirectory()) {
+        throw new IllegalArgumentException("JAVA_16_HOME environment variable must be set to the path of JDK16 but was not a real directory: $java16Home")
     }
 
     /**
-     * Configure the compiler step to accommodate Java 14 by forking a javac process using JDK 14 instead of the Java
-     * that is running the Gradle process (Gradle does not support 14)
+     * Configure the compiler step to accommodate Java 16 by forking a javac process using JDK 16 instead of the Java
+     * that is running the Gradle process.
      */
     tasks.withType(JavaCompile) {
         options.fork = true
-        options.forkOptions.javaHome = java14HomeFile
+        options.forkOptions.javaHome = java16HomeFile
         options.compilerArgs += ["--enable-preview"]
     }
 
     tasks.run {
-        setExecutable("$java14Home/bin/java")
+        setExecutable("$java16Home/bin/java")
         jvmArgs = ["--enable-preview"]
     }
 
     tasks.test {
-        setExecutable("$java14Home/bin/java")
+        setExecutable("$java16Home/bin/java")
         jvmArgs = ["--enable-preview"]
     }
 }
