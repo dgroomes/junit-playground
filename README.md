@@ -1,33 +1,12 @@
 # junit-playground
 
-Learning and exploring JUnit <https://junit.org/junit5/>.
+📚 Learning and exploring JUnit <https://junit.org/junit5/>.
 
 ## Instructions
 
 1. Use Java 11
 1. Run the program with `./gradlew run --args "Hello World"`
 1. Run the tests with `./gradlew test`
-
-### Java Early Access Example
-
-Gradle itself cannot always run on new versions or work-in-progress versions of Java. These versions of Java are
-sometimes called _Early Access_ versions. For example, in October 2020 the early access version of Java is Java 16 which
-is due out for release next year in March 2021.
-
-> Friendly reminder: use the official OpenJDK site to stay up-to-date on the latest OpenJDK plans, like [Java 16](https://openjdk.java.net/projects/jdk/16/spec/).
-
-Fortunately, Gradle does support compiling Java source for a so-called _Early Access_ version of Java, like Java 16,
-even if Gradle itself cannot run on that version of Java! Gradle can do this because it can _fork_ a process to execute
-the `compileJava` task with **a different JDK than the JDK used to execute Gradle itself**. Similarly, Gradle can be
-configured to use alternative JDKs to execute *execution* tasks like `run` and `test` (the `run` task is provided by the
-[application plugin](https://docs.gradle.org/current/userguide/application_plugin.html)).
-
-The [instructions](#instructions) to compile and run with Java 16 (instead of the version of Java executing Gradle)
-differ in this way:
-
-1. Set the environment variable `JAVA_16_HOME` to the path of a JDK 16 installation on your computer
-1. Run the program with `./gradlew -PTARGET_JAVA_16 run --args "Hello World"`
-1. Run the tests with `./gradlew -PTARGET_JAVA_16 test`
 
 ### Standalone JUnit Console Launcher Example
 
@@ -58,6 +37,6 @@ General clean ups, TODOs and things I wish to implement for this project:
 
 * Optimize the CI build (Github Actions). The set up Java step is slow (20s), why even do it? Maybe make a base Docker 
   image tailor-made for Gradle/Java projects.
-* Migrate the Java _Early Access_ example to <https://github.com/dgroomes/gradle-playground> because it is really a
+* DONE Migrate the Java _Early Access_ example to <https://github.com/dgroomes/gradle-playground> because it is really a
   Gradle thing not a JUnit thing.
-* Split into sub-projects. In particular, there should be 'basic' example and a 'junit-standalone' example
+* Split into sub-projects. In particular, there should be a 'basic' example and a 'junit-standalone' example
