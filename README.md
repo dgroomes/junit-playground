@@ -27,9 +27,8 @@ The [instructions](#instructions) to compile and run using the Standalone Launch
 1. Build the program and the tests with `./gradlew compileTestJava`
 1. Build references to the JUnit launcher and the test classpath  with `./gradlew printJunitLauncherPath printTestClassPath`
 1. Run the tests with `./test.sh`. It's fast. It's not building anything!
-1. Run the tests again with `./test.sh`. Wow, Java projects can be fast can't they?
+1. Run the tests again with `./test.sh`. Wow, Java projects can be fast can't they? 🚀
 1. Run the tests a third time with `./test.sh`. Isn't it freeing to de-couple the test execution from the build? 
-
 
 ## WishList
 
@@ -40,3 +39,6 @@ General clean ups, TODOs and things I wish to implement for this project:
 * DONE Migrate the Java _Early Access_ example to <https://github.com/dgroomes/gradle-playground> because it is really a
   Gradle thing not a JUnit thing.
 * Split into sub-projects. In particular, there should be a 'basic' example and a 'junit-standalone' example
+* Migrate to Gradle's Kotlin DSL
+* Remove usage of deprecated Gradle features. Use '--warning-mode all' with Gradle to show the individual deprecation
+  warnings
