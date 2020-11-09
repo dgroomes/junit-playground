@@ -4,9 +4,9 @@ plugins {
 }
 
 ext {
-    slf4jVersion = "1.7.26"
-    junitJupiterVersion = "5.6.0"
-    junitPlatformVersion = "1.6.0"
+    slf4jVersion = "1.7.30" // releases: http://www.slf4j.org/news.html
+    junitJupiterVersion = "5.7.0" // releases: https://junit.org/junit5/docs/current/release-notes/index.html
+    junitPlatformVersion = "1.7.0"
 }
 
 repositories {
@@ -16,47 +16,6 @@ repositories {
 
 configurations {
     junitLauncher
-}
-
-if (project.hasProperty("TARGET_JAVA_16")) {
-    project.getLogger().quiet("Configuring to compile with Java 16 and execute with Java 16")
-    java {
-        /**
-         * This is how to configure the Java compilation task to use Java 16.
-         */
-        sourceCompatibility = JavaVersion.VERSION_16
-        targetCompatibility = JavaVersion.VERSION_16
-    }
-
-    def java16Home = System.getenv("JAVA_16_HOME")
-    if (java16Home == null || java16Home.isBlank()) {
-        throw new IllegalArgumentException("JAVA_16_HOME environment variable must be set to the path of JDK16 but was not set")
-    }
-
-    def java16HomeFile = new File(java16Home)
-    if (!java16HomeFile.isDirectory()) {
-        throw new IllegalArgumentException("JAVA_16_HOME environment variable must be set to the path of JDK16 but was not a real directory: $java16Home")
-    }
-
-    /**
-     * Configure the compiler step to accommodate Java 16 by forking a javac process using JDK 16 instead of the Java
-     * that is running the Gradle process.
-     */
-    tasks.withType(JavaCompile) {
-        options.fork = true
-        options.forkOptions.javaHome = java16HomeFile
-        options.compilerArgs += ["--enable-preview"]
-    }
-
-    tasks.run {
-        setExecutable("$java16Home/bin/java")
-        jvmArgs = ["--enable-preview"]
-    }
-
-    tasks.test {
-        setExecutable("$java16Home/bin/java")
-        jvmArgs = ["--enable-preview"]
-    }
 }
 
 /**
