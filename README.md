@@ -39,6 +39,6 @@ General clean ups, TODOs and things I wish to implement for this project:
 * DONE Migrate the Java _Early Access_ example to <https://github.com/dgroomes/gradle-playground> because it is really a
   Gradle thing not a JUnit thing.
 * Split into sub-projects. In particular, there should be a 'basic' example and a 'junit-standalone' example
-* Migrate to Gradle's Kotlin DSL
+* DONE Migrate to Gradle's Kotlin DSL
 * Remove usage of deprecated Gradle features. Use '--warning-mode all' with Gradle to show the individual deprecation
   warnings
