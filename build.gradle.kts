@@ -8,8 +8,7 @@ val junitJupiterVersion = "5.7.0" // releases: https://junit.org/junit5/docs/cur
 val junitPlatformVersion = "1.7.0"
 
 repositories {
-    mavenLocal()
-    jcenter()
+    mavenCentral()
 }
 
 /*
