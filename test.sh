@@ -25,9 +25,13 @@ assertFileExists "$TEST_CLASSPATH_FILE"
 
 LAUNCHER_PATH=$(cat "$LAUNCHER_PATH_FILE")
 
-java -jar "$LAUNCHER_PATH" \
+# TODO explain all of these configs
+java \
+  -jar "$LAUNCHER_PATH" \
   --include-engine junit-jupiter \
   --reports-dir=build/test-results/test \
   --fail-if-no-tests \
+  --config=junit.platform.output.capture.stdout=true \
+  --config=junit.platform.output.capture.stderr=true \
   --scan-classpath \
   --classpath @$TEST_CLASSPATH_FILE

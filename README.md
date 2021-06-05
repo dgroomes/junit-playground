@@ -42,3 +42,7 @@ General clean ups, TODOs and things I wish to implement for this project:
 * DONE Migrate to Gradle's Kotlin DSL
 * Remove usage of deprecated Gradle features. Use '--warning-mode all' with Gradle to show the individual deprecation
   warnings
+
+## Reference
+
+* [JUnit 5 Docs: *Configuration Parameters*](https://junit.org/junit5/docs/current/user-guide/#running-tests-config-params)
