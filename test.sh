@@ -27,6 +27,7 @@ LAUNCHER_PATH=$(cat "$LAUNCHER_PATH_FILE")
 
 java -jar "$LAUNCHER_PATH" \
   --include-engine junit-jupiter \
+  --reports-dir=build/test-results/test \
   --fail-if-no-tests \
   --scan-classpath \
   --classpath @$TEST_CLASSPATH_FILE
