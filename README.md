@@ -30,3 +30,5 @@ General clean ups, TODOs and things I wish to implement for this project:
 * DONE Migrate to Gradle's Kotlin DSL
 * Remove usage of deprecated Gradle features. Use '--warning-mode all' with Gradle to show the individual deprecation
   warnings
+* Is is it possible to use the Gradle application or distribution plugins to create the standalone escape hatch? Would this
+  be more idiomatic? Instead of building a file of references to classes by hand, I think this would be better.
