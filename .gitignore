@@ -7,3 +7,9 @@ build/
 .idea/
 
 tmp/
+
+util/lib/
+
+# Specific .gitignore entries for the "standalone/" sub-project
+standalone/sources.txt
+standalone/out/

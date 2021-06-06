@@ -11,6 +11,12 @@ re-using the code.
 
 The sub-projects include:
 
+### `standalone/`
+
+A build-tool-free (no Gradle/Maven) Java project that is tested with JUnit in a standalone way using the [JUnit Console Launcher](https://junit.org/junit5/docs/current/user-guide/#running-tests-console-launcher).
+
+See the README in [standalone/](standalone/).
+
 ### `standalone-gradle/`
 
 In a Gradle project, build an escape hatch to run the test suite in a standalone way using the [JUnit Console Launcher](https://junit.org/junit5/docs/current/user-guide/#running-tests-console-launcher)
