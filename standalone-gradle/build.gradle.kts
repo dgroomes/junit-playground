@@ -16,30 +16,6 @@ repositories {
  */
 val junitLauncher by configurations.creating
 
-/**
- * Print the path to the standalone JUnit Console Launcher JAR so it can be used later by "test.sh" to execute the JUnit
- * tests. It's great to leverage Gradle for managing dependencies and setting up environment information for a
- * downstream process like "test.sh"
- */
-tasks.register("printJunitLauncherPath") {
-    doLast {
-        configurations.getByName("junitLauncher").resolve().forEach {
-            File(buildDir, "junit-launcher-path.txt").writeText(it.toString())
-        }
-    }
-}
-
-/**
- * Support the standalone JUnit Console Launcher by printing the test class path to a file. This task is used in
- * conjunction with 'printJunitLauncherPath'.
- */
-tasks.register("printTestClassPath") {
-    doLast {
-        val classpath = sourceSets.test.get().runtimeClasspath.joinToString(separator = ":")
-        File(buildDir, "test-classpath.txt").writeText(classpath)
-    }
-}
-
 dependencies {
     junitLauncher("org.junit.platform:junit-platform-console-standalone:$junitPlatformVersion")
 
@@ -62,6 +38,30 @@ tasks {
         testLogging {
             showStandardStreams = true
             exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+        }
+    }
+
+    /**
+     * Print the path to the standalone JUnit Console Launcher JAR so it can be used later by "test.sh" to execute the JUnit
+     * tests. It's great to leverage Gradle for managing dependencies and setting up environment information for a
+     * downstream process like "test.sh"
+     */
+    register("printJunitLauncherPath") {
+        doLast {
+            configurations.getByName("junitLauncher").resolve().forEach {
+                File(buildDir, "junit-launcher-path.txt").writeText(it.toString())
+            }
+        }
+    }
+
+    /**
+     * Support the standalone JUnit Console Launcher by printing the test class path to a file. This task is used in
+     * conjunction with 'printJunitLauncherPath'.
+     */
+    register("printTestClassPath") {
+        doLast {
+            val classpath = sourceSets.test.get().runtimeClasspath.joinToString(separator = ":")
+            File(buildDir, "test-classpath.txt").writeText(classpath)
         }
     }
 }
