@@ -1,6 +1,5 @@
 plugins {
     java
-    application
 }
 
 val slf4jVersion = "1.7.30" // releases: http://www.slf4j.org/news.html
@@ -26,10 +25,6 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 }
 
-application {
-    mainClass.set("dgroomes.Main")
-}
-
 tasks {
 
     withType(Test::class.java) {
@@ -42,26 +37,29 @@ tasks {
     }
 
     /**
-     * Print the path to the standalone JUnit Console Launcher JAR so it can be used later by "test.sh" to execute the JUnit
-     * tests. It's great to leverage Gradle for managing dependencies and setting up environment information for a
-     * downstream process like "test.sh"
+     * Build a jar file containing the compiled test classes.
      */
-    register("printJunitLauncherPath") {
-        doLast {
-            configurations.getByName("junitLauncher").resolve().forEach {
-                File(buildDir, "junit-launcher-path.txt").writeText(it.toString())
-            }
-        }
+    register("testJar", Jar::class.java) {
+        archiveFileName.set("test.jar")
+        from(sourceSets["test"].output)
     }
 
     /**
-     * Support the standalone JUnit Console Launcher by printing the test class path to a file. This task is used in
-     * conjunction with 'printJunitLauncherPath'.
+     * Copy all library files to a directory. These files include the application's main source set (as a .jar file), the
+     * application's test source set (as a .jar file), the main dependencies (.jar files) and the test dependencies (.jar files).
+     *
+     * Partially gleaned from https://github.com/gradle/gradle/blob/e5de9e91f726af15eac246caff489d8a65112e35/subprojects/plugins/src/main/java/org/gradle/api/plugins/ApplicationPlugin.java#L217
      */
-    register("printTestClassPath") {
-        doLast {
-            val classpath = sourceSets.test.get().runtimeClasspath.joinToString(separator = ":")
-            File(buildDir, "test-classpath.txt").writeText(classpath)
-        }
+    register("installLibs", Copy::class.java) {
+        from(configurations.runtimeClasspath)
+        from(configurations.testRuntimeClasspath)
+        from(project.tasks.named("jar"))
+        from(project.tasks.named("testJar"))
+        into("${buildDir}/install/lib")
+    }
+
+    register("installLauncher", Copy::class.java) {
+        from(configurations.getByName("junitLauncher"))
+        into("${buildDir}/install/bin")
     }
 }

@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 # Run the tests using the Standalone JUnit Console Launcher.
-# Requires that the project is already built
+# Requires that the project is already built. See the README for instructions.
 
 set -eu
 
-if [[ ! -d "build" ]]; then
-  echo >&2 "Build the project first"
+LIB_DIR=build/install/lib
+
+if [[ ! -d "$LIB_DIR" ]]; then
+  echo >&2 "Expected to find the directory '$LIB_DIR' which should contain all .jar files but did not. See the README for instructions."
   exit 1
 fi
 
-LAUNCHER_PATH_FILE=build/junit-launcher-path.txt
-TEST_CLASSPATH_FILE=build/test-classpath.txt
+LAUNCHER_PATH_PREFIX=build/install/bin/junit-platform-console-standalone
 
-assertFileExists() {
-  local file=$1
-  if [[ ! -f "$file" ]]; then
-    echo >&2 "Expected to find file '$file' but did not"
-    exit 1
-  fi
-}
+if ! ls "$LAUNCHER_PATH_PREFIX"* &> /dev/null; then
+  echo >&2 "Expected to find the JUnit standalone launcher file but did not. See the README for instructions."
+  exit 1
+fi
 
-assertFileExists "$LAUNCHER_PATH_FILE"
-assertFileExists "$TEST_CLASSPATH_FILE"
+CLASSPATH_FILE=build/classpath.txt
+# Build the classpath file by enumerating the paths to all .jar files
+find "$LIB_DIR" | tr '\n' ':' > "$CLASSPATH_FILE"
 
-LAUNCHER_PATH=$(cat "$LAUNCHER_PATH_FILE")
+#LAUNCHER_PATH=$(cat "$LAUNCHER_PATH_FILE")
+LAUNCHER_PATH=$(ls "$LAUNCHER_PATH_PREFIX"*)
 
 # TODO explain all of these configs
 java \
@@ -34,4 +34,4 @@ java \
   --config=junit.platform.output.capture.stdout=true \
   --config=junit.platform.output.capture.stderr=true \
   --scan-classpath \
-  --classpath @$TEST_CLASSPATH_FILE
+  --classpath "@$CLASSPATH_FILE"

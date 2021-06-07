@@ -34,5 +34,5 @@ General clean ups, TODOs and things I wish to implement for this project:
   Gradle thing not a JUnit thing.
 * DONE Split into sub-projects. In particular, there should be a 'basic' example and a 'junit-standalone' example
 * DONE Migrate to Gradle's Kotlin DSL
-* Is is it possible to use the Gradle application or distribution plugins to create the standalone escape hatch? Would this
+* DONE Is is it possible to use the Gradle application or distribution plugins to create the standalone escape hatch? Would this
   be more idiomatic? Instead of building a file of references to classes by hand, I think this would be better.

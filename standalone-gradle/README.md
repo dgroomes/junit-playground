@@ -21,10 +21,10 @@ without a build process!
 
 Build and run the application code, test code and escape hatch with these instructions:
 
-1. Build the program and the tests:
-   * `./gradlew compileTestJava`
-1. Build references to the JUnit launcher and the test classpath:
-   * `./gradlew printJunitLauncherPath printTestClassPath`
+1. Build and install the program and the tests:
+   * `./gradlew installLibs`
+1. Install the standalone JUnit launcher:
+   * `./gradlew installLauncher`
 1. Run the tests:
    * `./test.sh`
    * It's fast. It's not building anything!
