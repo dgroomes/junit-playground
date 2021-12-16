@@ -10,6 +10,12 @@ repositories {
     mavenCentral()
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 /*
  * Declare a custom "junitLauncher" configuration. For reference on how custom configurations work, see https://docs.gradle.org/current/userguide/declaring_dependencies.html
  */
@@ -27,7 +33,7 @@ dependencies {
 
 tasks {
 
-    withType(Test::class.java) {
+    test {
         useJUnitPlatform()
 
         testLogging {

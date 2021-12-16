@@ -30,6 +30,7 @@ escaping from the constraints of a software build tool after getting the initial
 
 Build and run the application code, test code and escape hatch with these instructions:
 
+1. Use Java 17  
 1. Build and install the program and the tests:
    * `./gradlew installLibs`
 1. Install the standalone JUnit launcher:
