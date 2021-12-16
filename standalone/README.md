@@ -4,12 +4,15 @@ A build-tool-free (no Gradle/Maven) Java project that is tested with JUnit in a 
 
 ## Instructions
 
-* Compile the program and test Java files:
-  * `./build.sh`
-* Run the program:
-  * `./run.sh`
-* Run the JUnit tests:
-  * `./test.sh`
+1. Use Java 17
+1. Compile the source code
+   * `./build.sh`
+   * Note: This compiles both the Java source code for the main program, and the Java source code belonging to the
+     JUnit tests
+1. Run the program:
+   * `./run.sh`
+1. Run the JUnit tests:
+   * `./test.sh`
 
 ## Reference
 
