@@ -17,6 +17,15 @@ night or every hour against the remote API. But while the remote API may be chan
 constant. So, why build it every time? With the Standalone JUnit Console Launcher, you have a way to execute tests
 without a build process!
 
+This pattern reminds me of and is vaguely similar to the [`eject`](https://create-react-app.dev/docs/available-scripts/#npm-run-eject)
+command in Create React App. The documentation describes the eject command like this:
+
+> If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will
+> remove the single build dependency from your project.
+
+While this Gradle project and a Create React App are quite different, the spirit of these "ejector patterns" is the same:
+escaping from the constraints of a software build tool after getting the initial benefit from it.
+
 ## Instructions
 
 Build and run the application code, test code and escape hatch with these instructions:
