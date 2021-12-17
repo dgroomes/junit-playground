@@ -28,22 +28,50 @@ escaping from the constraints of a software build tool after getting the initial
 
 ## Instructions
 
-Build and run the application code, test code and escape hatch with these instructions:
+Follow the below instructions to build and test the application in a traditional style. 
 
 1. Use Java 17  
+2. Build the program and run the tests
+   * `./gradlew test`
+   * Gradle makes it as easy as that!
+   * The command took 7.6 seconds for me
+3. Run the tests again
+   * `./gradlew test`
+   * It will be really fast because of Gradle's smarts. Gradle knows that it shouldn't execute the tests because none of
+     the program code changed since last running the tests. The Gradle daemon is also likely being used which saves
+     precious time on subsequent invocations of Gradle commands after the very first. Gradle itself is a large JVM
+     program and a Gradle project takes time to "analyze", and the daemon helps with this.
+   * The command took 1.7 seconds for me
+4. Force run the tests again
+   * `./gradlew cleanTest test`
+   * It will be a bit slower than the previous step, but still pretty good thanks to the daemon. 
+   * The command took 2.9 seconds for me
+5. Try it again without the Gradle daemon
+   * `./gradlew --no-daemon cleanTest test`
+   * It should be about as slow as the original build step because the daemon wasn't there to help.
+   * The command took 8.6 seconds for me
+
+Now, follow these instructions to create and use a "Gradle escape hatch" and run the tests in a standalone style.
+
 1. Build and install the program and the tests:
-   * `./gradlew installLibs`
+   * `./gradlew installLibs` 
+   * The command took 7.6 seconds for me
 1. Install the standalone JUnit launcher:
    * `./gradlew installLauncher`
-1. Run the tests:
+   * The command took 1.6 seconds for me
+1. Run the tests without Gradle:
    * `./test.sh`
    * It's fast. It's not building anything!
+   * On the other hand, it took more steps to get here than the traditional style.
+   * The command took 1.4 seconds for me
 1. Run the tests again:
    * `./test.sh`
    * Wow, Java projects can be fast can't they? 🚀
+   * The command took 1.2 seconds for me
 1. Run the tests a third time:
    * `./test.sh`
    * Isn't it freeing to de-couple the test execution from the build?
+   * The command took 1.2 seconds for me
 
 ## Reference
 
