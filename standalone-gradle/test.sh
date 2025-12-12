@@ -25,9 +25,10 @@ find "$LIB_DIR" | tr '\n' ':' > "$CLASSPATH_FILE"
 #LAUNCHER_PATH=$(cat "$LAUNCHER_PATH_FILE")
 LAUNCHER_PATH=$(ls "$LAUNCHER_PATH_PREFIX"*)
 
-# TODO explain all of these configs
+# JUnit 6 uses subcommands. Use 'execute' to run tests.
 java \
   -jar "$LAUNCHER_PATH" \
+  execute \
   --include-engine junit-jupiter \
   --reports-dir=build/test-results/test \
   --fail-if-no-tests \

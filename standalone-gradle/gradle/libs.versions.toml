@@ -1,0 +1,11 @@
+[versions]
+junit = "6.0.1" # JUnit releases: https://junit.org/junit5/docs/current/release-notes/index.html
+slf4j = "2.0.17" # SLF4J releases: http://www.slf4j.org/news.html
+
+[libraries]
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit-platform-console-standalone = { module = "org.junit.platform:junit-platform-console-standalone", version.ref = "junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
